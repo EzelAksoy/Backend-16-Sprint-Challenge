@@ -36,6 +36,13 @@ exports.up = function (knex) {
       comment.increments("comment_id");
       comment.string("comment", 255);
       comment
+        .integer("user_id")
+        .notNullable()
+        .references("user_id")
+        .inTable("users")
+        .onDelete("CASCADE")
+        .onUpdate("CASCADE");
+      comment
         .integer("tweet_id")
         .notNullable()
         .references("tweet_id")
