@@ -20,6 +20,7 @@ const checkRegister = (req, res, next) => {
     next(error);
   }
 };
+const roleNameCheck = async (req, res, next) => {};
 const Isunique = async (req, res, next) => {
   const username = req.body.username;
   const Isexist = await users_model.getByFilter({ username: username });
@@ -73,10 +74,27 @@ const passwordControl = async (req, res, next) => {
   }
 };
 
+const ExistID = async (req, res, next) => {
+  try {
+    const Id = await users_model.getById(req.params.id);
+    if (!Id) {
+      res
+        .status(402)
+        .json({ message: ` This ${req.params.id} ID number is not exist` });
+    } else {
+      next();
+    }
+  } catch (error) {
+    nexy(error);
+  }
+};
+
 module.exports = {
   checkRegister,
+  roleNameCheck,
   Isunique,
   IsValidUsername,
   passwordControl,
   restricted,
+  ExistID,
 };

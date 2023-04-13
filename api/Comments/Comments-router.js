@@ -10,7 +10,7 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/:id", async (req, res, next) => {
   try {
     const { tweet_id, user_id } = req.body;
     const comments = await comments_model.getByFilter(tweet_id);

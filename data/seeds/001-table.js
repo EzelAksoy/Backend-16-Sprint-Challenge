@@ -15,31 +15,31 @@ exports.seed = async function (knex) {
     {
       username: "Ezel",
       email: "aksoy.ezel@gmail.com",
-      password: 12345,
+      password: "$2a$08$53/jMQlOtN7swtlKCbYGNOlaLsZYViRkRHWjFZhDltgcDgJd0xaaC", //1234
       role_id: 1,
     },
     {
       username: "Aden",
       email: "aksoy.aden@gmail.com",
-      password: 123456,
+      password: "$2a$08$ePCIKECTy04580G9/HEy1u3Z0WFKJULkGTnnXA17z2aPBD9WTxqd6", //123456
       role_id: 1,
     },
     {
-      username: "Sue",
+      username: "Sue", //sue
       email: "sue@gmail.com",
-      password: 1234567,
+      password: "$2a$08$TFtxa7MsnRi4.10RCy2lW.Q.3zuNhIna49qbMd7szyfSFI2R4y496", //1234567
       role_id: 2,
     },
     {
-      username: "Boe",
+      username: "Boe", //Boe
       email: "boe@gmail.com",
-      password: 1234,
+      password: "$2a$08$W100d3VGzxISH7kpmjWGB.w41/V6XzuIvh1oyw1bZlco/VRCUYlJe", //1234
       role_id: 2,
     },
     {
-      username: "Daniel",
-      email: "adaniel@gmail.com",
-      password: 1234578,
+      username: "Daniel", //Daniel
+      email: "daniel@gmail.com",
+      password: "$2a$08$FjmkDUIOlD09szL6DSQc5.x4Qtfl1MtvkL96MfIiEpP5Plojwzbs2", //12345678
       role_id: 2,
     },
   ]);

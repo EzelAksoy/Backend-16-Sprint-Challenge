@@ -3,7 +3,7 @@ const users_model = require("./Users-model");
 const bcrypt = require("bcryptjs");
 const authMw = require("../Auth/Auth-middleware");
 
-router.get("/", async (req, res, next) => {
+router.get("/", authMw.restricted, async (req, res, next) => {
   try {
     const alluser = await users_model.getAllUsers();
     res.status(201).json(alluser);
@@ -12,7 +12,7 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.get("/:id", authMw.restricted, async (req, res, next) => {
+router.get("/:id", async (req, res, next) => {
   try {
     const Id = await users_model.getById(req.params.id);
     if (!Id) {
@@ -27,14 +27,19 @@ router.get("/:id", authMw.restricted, async (req, res, next) => {
   }
 });
 
-router.delete("/:id", authMw.restricted, async (req, res, next) => {
-  try {
-    const Id = await users_model.deleteById(req.params.id);
-    res.status(201).json(Id);
-  } catch (error) {
-    next(error);
+router.delete(
+  "/:id",
+  authMw.restricted,
+  authMw.ExistID,
+  async (req, res, next) => {
+    try {
+      const Id = await users_model.deleteById(req.params.id);
+      res.status(201).json(Id);
+    } catch (error) {
+      next(error);
+    }
   }
-});
+);
 router.put("/:id", async (req, res, next) => {
   try {
     const Id = await users_model.update(req.params.id, {
