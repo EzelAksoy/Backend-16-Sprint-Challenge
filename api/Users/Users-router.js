@@ -2,6 +2,7 @@ const router = require("express").Router();
 const users_model = require("./Users-model");
 const bcrypt = require("bcryptjs");
 const authMw = require("../Auth/Auth-middleware");
+const userMw = require("./Users-middleware");
 
 router.get("/", authMw.restricted, async (req, res, next) => {
   try {
@@ -31,6 +32,7 @@ router.delete(
   "/:id",
   authMw.restricted,
   authMw.ExistID,
+  userMw.checkUserId,
   async (req, res, next) => {
     try {
       const Id = await users_model.deleteById(req.params.id);

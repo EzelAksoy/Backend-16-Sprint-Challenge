@@ -32,10 +32,10 @@ const checkUserId = async (req, res, next) => {
   const Id = await tweet_model.getByFilter({ username: UserId });
   const TweetId = await tweet_model.getById(req.params.id);
 
-  if (TweetId !== Id.username) {
+  if (TweetId.user_id !== Id.user_id) {
     res
       .status(402)
-      .json({ message: "you dont have authorization for progress" });
+      .json({ message: "you dont have authorations for that progress" });
   } else {
     next();
   }
